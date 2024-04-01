@@ -55,7 +55,7 @@ void	check_export_null(t_evnp *head_export, t_evnp **env_list,
 	if (*export_list == NULL)
 	{
 		(*export_list) = head_export;
-		ft_envadd_back((export_list), ft_envnew(arg));
+        ft_lstadd_back_e((export_list), ft_envnew(arg));
 		if (arg[1] && ft_strcmp(arg[1], "") != 0)
 			ft_envadd_back((env_list), ft_envnew(arg));
 	}

@@ -13,40 +13,25 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "inc/libft.h"
-// # include <fcntl.h>
-// # include <readline/history.h>
-// # include <readline/readline.h>
-// # include <stdbool.h>
-// # include <stdio.h>
-// # include <stdlib.h>
-// # include <string.h>
-// # include <unistd.h>
-// # include <errno.h>
-// #include "inc/libft.h"
 
-# include <dirent.h>
-# include <errno.h>
+# include <stdio.h>
 # include <fcntl.h>
-# include <limits.h>
+# include <string.h>
+# include <sys/stat.h>
+# include <stdlib.h>
+# include <termios.h>
+# include <dirent.h>
+# include <sys/wait.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
-# include <stdint.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/stat.h>
-# include <sys/wait.h>
 # include <termcap.h>
-# include <termios.h>
 # include <unistd.h>
-// #include <bits/sigaction.h>
-// #include <asm-generic/signal-defs.h>
-
-// #include <signal.h>
-// # include <gleib.h>
-// # include <glib-object.h>
+# include <stdint.h>
+# include <limits.h>
+# include <errno.h>
+# include <stdbool.h>
+# include "inc/libft.h"
 
 typedef enum e_token_type
 {
@@ -117,7 +102,7 @@ typedef struct s_tools
 	int					out;
 }						t_tools;
 
-int						g_signal;
+int						global_signal;
 
 char					**ft_split(char const *s, char c);
 // int						ft_unset(char *argv);
@@ -164,6 +149,7 @@ void					init_cmd_simple(t_cmd_simple **cmd);
 
 // FREE
 void					delete_tools(t_tools *tools);
+void	free_tools(t_tools *tool);
 
 // execve
 int						ft_builtin(t_tools *tool, t_cmd_simple *cmd);
@@ -195,5 +181,27 @@ void					handle_c(int signo);
 int						handle_d(t_tools *tool, char *line);
 void					handle_sig_child(int signo);
 int						in_quotes(char *s, int pos);
+
+//signal
+void	handle_signal(void);
+void	handle_c(int signo);
+int	handle_d(t_tools *tool, char *line);
+void	handle_sig_child(int signo);
+
+char	*find_command_path(t_tools *tools, t_cmd_simple *cmd);
+char	*find_executable_path(char **paths, char *cmd);
+char	*find_env_var(t_tools *tools, char *var_name);
+
+int	odd_quote(char *str);
+int	in_quotes(char *s, int pos);
+int	in_single_quotes(char *s, int pos);
+int	special_chars(char *str);
+
+void	add_str_part(char *str, int i, int start, char **result);
+void	join_result_with_exit(int exit_status, char **result);
+void	replace_variable(t_tools *tools, int *i, int *start, char **result);
+char	*replace_dollars(t_tools *tools, char *str);
+
+
 
 #endif

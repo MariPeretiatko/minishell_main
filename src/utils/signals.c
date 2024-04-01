@@ -34,13 +34,13 @@ void	handle_c(int signo)
 	int sig;
 
 	if (signo == SIGCHLD)
-		g_signal = SIGCHLD;
+        global_signal = SIGCHLD;
 	else if (signo == SIGINT)
 	{
 		write(1, "\n", 1);
 		wait(NULL);
-		sig = g_signal;
-		g_signal = SIGINT;
+		sig = global_signal;
+        global_signal = SIGINT;
 		if (sig == SIGCHLD)
 			return ;
 		rl_on_new_line();
@@ -72,7 +72,7 @@ void	handle_sig_child(int signo)
 {
 	if (signo == SIGINT)
 	{
-		g_signal = SIGINT;
+        global_signal = SIGINT;
 		exit(1);
 	}
 }

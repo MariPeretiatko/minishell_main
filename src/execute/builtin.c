@@ -35,7 +35,6 @@ int	ft_builtin(t_tools *tool, t_cmd_simple *cmd)
 {
 	int	builtin_type;
 
-	// int builtin_type = ft_is_builtin(cmd);
 	builtin_type = ft_is_builtin(tool->lexer_list);
 	if (builtin_type)
 	{

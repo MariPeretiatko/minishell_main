@@ -12,7 +12,7 @@
 
 #include "../../minishell.h"
 
-void	free_data(t_tools *tool)
+void	free_tools(t_tools *tool)
 {
 	if (!tool)
 		return ;
