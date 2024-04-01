@@ -6,7 +6,7 @@
 /*   By: mperetia <mperetia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:17:49 by mperetia          #+#    #+#             */
-/*   Updated: 2024/02/22 15:46:40 by mperetia         ###   ########.fr       */
+/*   Updated: 2024/04/02 00:13:57 by mperetia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	print_lexer(t_lexer **lexer)
 
 int	check_token(char *token)
 {
-	if (!strcmp(token, "|"))
+	if (!ft_strcmp(token, "|"))
 		return (PIPE);
 	else if (!ft_strcmp(token, "<"))
 		return (GREATER);
@@ -48,20 +48,6 @@ int	check_token(char *token)
 	else if (!ft_strcmp(token, ">>"))
 		return (LESS_LESS);
 	return (WORD);
-}
-
-t_lexer	*add_info_lexer(t_lexer **lexer, char **array_str)
-{
-	int		index;
-	t_lexer	*head;
-
-	head = *lexer;
-	index = 0;
-	if (!head)
-		head = ft_lstnew(index, array_str[index]);
-	while (array_str[++index])
-		ft_lstadd_back(&head, ft_lstnew(index, array_str[index]));
-	return (*lexer);
 }
 
 // lexer = add_info_lexer(&lexer, array_str);

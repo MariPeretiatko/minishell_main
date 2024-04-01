@@ -20,7 +20,7 @@ void	minishell_loop(t_tools *tools)
 
 	while (1)
 	{
-        global_signal = 0;
+        g_signal = 0;
 		delete_tools(tools);
 		input = readline(tools->minishell);
         if (handle_d(tools, input))

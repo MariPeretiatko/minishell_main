@@ -6,32 +6,31 @@
 /*   By: mperetia <mperetia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:40:23 by mperetia          #+#    #+#             */
-/*   Updated: 2024/03/24 22:47:28 by mperetia         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:45:40 by mperetia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-
-# include <stdio.h>
-# include <fcntl.h>
-# include <string.h>
-# include <sys/stat.h>
-# include <stdlib.h>
-# include <termios.h>
+# include "inc/libft.h"
 # include <dirent.h>
-# include <sys/wait.h>
+# include <errno.h>
+# include <fcntl.h>
+# include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
-# include <termcap.h>
-# include <unistd.h>
-# include <stdint.h>
-# include <limits.h>
-# include <errno.h>
 # include <stdbool.h>
-# include "inc/libft.h"
+# include <stdint.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <sys/stat.h>
+# include <sys/wait.h>
+# include <termcap.h>
+# include <termios.h>
+# include <unistd.h>
 
 typedef enum e_token_type
 {
@@ -102,7 +101,7 @@ typedef struct s_tools
 	int					out;
 }						t_tools;
 
-int						global_signal;
+int						g_signal;
 
 char					**ft_split(char const *s, char c);
 // int						ft_unset(char *argv);
@@ -149,7 +148,7 @@ void					init_cmd_simple(t_cmd_simple **cmd);
 
 // FREE
 void					delete_tools(t_tools *tools);
-void	free_tools(t_tools *tool);
+void					free_tools(t_tools *tool);
 
 // execve
 int						ft_builtin(t_tools *tool, t_cmd_simple *cmd);
@@ -182,26 +181,26 @@ int						handle_d(t_tools *tool, char *line);
 void					handle_sig_child(int signo);
 int						in_quotes(char *s, int pos);
 
-//signal
-void	handle_signal(void);
-void	handle_c(int signo);
-int	handle_d(t_tools *tool, char *line);
-void	handle_sig_child(int signo);
+// signal
+void					handle_signal(void);
+void					handle_c(int signo);
+int						handle_d(t_tools *tool, char *line);
+void					handle_sig_child(int signo);
 
-char	*find_command_path(t_tools *tools, t_cmd_simple *cmd);
-char	*find_executable_path(char **paths, char *cmd);
-char	*find_env_var(t_tools *tools, char *var_name);
+char					*find_command_path(t_tools *tools, t_cmd_simple *cmd);
+char					*find_executable_path(char **paths, char *cmd);
+char					*find_env_var(t_tools *tools, char *var_name);
 
-int	odd_quote(char *str);
-int	in_quotes(char *s, int pos);
-int	in_single_quotes(char *s, int pos);
-int	special_chars(char *str);
+int						odd_quote(char *str);
+int						in_quotes(char *s, int pos);
+int						in_single_quotes(char *s, int pos);
+int						special_chars(char *str);
 
-void	add_str_part(char *str, int i, int start, char **result);
-void	join_result_with_exit(int exit_status, char **result);
-void	replace_variable(t_tools *tools, int *i, int *start, char **result);
-char	*replace_dollars(t_tools *tools, char *str);
-
-
+void					add_str_part(char *str, int i, int start,
+							char **result);
+void					join_result_with_exit(int exit_status, char **result);
+void					replace_variable(t_tools *tools, int *i, int *start,
+							char **result);
+char					*replace_dollars(t_tools *tools, char *str);
 
 #endif
