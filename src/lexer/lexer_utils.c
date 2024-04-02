@@ -6,7 +6,7 @@
 /*   By: mperetia <mperetia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 23:29:28 by mperetia          #+#    #+#             */
-/*   Updated: 2024/04/02 00:18:25 by mperetia         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:41:02 by mperetia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_lexer(t_tools *tools, char *input)
 
 int	check(t_tools *tools)
 {
-	find_redirect(tools->lexer_list);
+	// find_redirect(tools->lexer_list);
 	if (error_syntax(tools->lexer_list, tools))
 		return (1);
 	return (0);

@@ -31,7 +31,7 @@ void	minishell_loop(t_tools *tools)
         tools->input_line = replace_dollars(tools, tools->input_line);
         ft_strdel(&input);
         if ((odd_quote(tools->input_line)) || (special_chars(tools->input_line))
-            || (lexical_analysis(tools, tools->input_line)))
+            || (check_lexer(tools, tools->input_line)))
             continue ;
         fix_quotes(tools);
         init_tools(tools);

@@ -6,7 +6,7 @@
 /*   By: mperetia <mperetia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:40:23 by mperetia          #+#    #+#             */
-/*   Updated: 2024/04/01 19:45:40 by mperetia         ###   ########.fr       */
+/*   Updated: 2024/04/02 22:14:55 by mperetia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,5 +202,6 @@ void					join_result_with_exit(int exit_status, char **result);
 void					replace_variable(t_tools *tools, int *i, int *start,
 							char **result);
 char					*replace_dollars(t_tools *tools, char *str);
+void					fix_quotes(t_tools *tools);
 
 #endif
