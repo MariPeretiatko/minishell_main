@@ -6,7 +6,7 @@
 /*   By: mperetia <mperetia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:40:23 by mperetia          #+#    #+#             */
-/*   Updated: 2024/04/02 22:14:55 by mperetia         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:15:56 by mperetia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ void					exit_shell_no_free(char *message, int exit_code,
 							t_tools *tool);
 void					exit_shell_no_mes(int exit_code, t_tools *tool);
 
-char					*trim_input(char *input);
+char					*update_input(char *input);
 void					process_input(char *input, char *str, int *i, int *j);
 int						is_chr_str(char c, char *str);
 char					*ft_strstr(const char *haystack, const char *needle);

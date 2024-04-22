@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mperetia <mperetia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/08 18:20:34 by mperetia          #+#    #+#             */
+/*   Updated: 2024/04/08 18:21:53 by mperetia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 // #include <stdio.h>
 // #include <readline/readline.h>
 // #include <readline/history.h>
@@ -27,7 +39,7 @@ void	minishell_loop(t_tools *tools)
             continue ;
 		if  (ft_strlen(input) > 0)
 			add_history(input);
-		tools->input_line = trim_input(input);
+		tools->input_line = update_input(input);
         tools->input_line = replace_dollars(tools, tools->input_line);
         ft_strdel(&input);
         if ((odd_quote(tools->input_line)) || (special_chars(tools->input_line))

@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: mperetia <mperetia@student.42.fr>          +#+  +:+      
+/*   By: mperetia <mperetia@student.42.fr>          +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2024/03/24 20:43:37 by mperetia          #+#    #+#             */
 /*   Updated: 2024/03/24 20:43:37 by mperetia         ###   ########.fr       */
@@ -14,6 +14,7 @@
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
 
 void	handle_signal(void)
 {
@@ -29,18 +30,27 @@ void	handle_signal(void)
 	sigaction(SIGCHLD, &sa, NULL);
 }
 
+void	handle_sig_child(int signo)
+{
+	if (signo == SIGINT)
+	{
+		g_signal = SIGINT;
+		exit(1);
+	}
+}
+
 void	handle_c(int signo)
 {
 	int sig;
 
 	if (signo == SIGCHLD)
-        global_signal = SIGCHLD;
+		g_signal = SIGCHLD;
 	else if (signo == SIGINT)
 	{
 		write(1, "\n", 1);
 		wait(NULL);
-		sig = global_signal;
-        global_signal = SIGINT;
+		sig = g_signal;
+		g_signal = SIGINT;
 		if (sig == SIGCHLD)
 			return ;
 		rl_on_new_line();
@@ -66,13 +76,4 @@ int	handle_d(t_tools *tool, char *line)
 		return (1);
 	}
 	return (0);
-}
-
-void	handle_sig_child(int signo)
-{
-	if (signo == SIGINT)
-	{
-        global_signal = SIGINT;
-		exit(1);
-	}
 }
